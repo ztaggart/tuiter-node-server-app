@@ -1,18 +1,18 @@
 import * as tuitsDao from "./tuits-dao.js";
-//let tuits = posts;
 
 const createTuit = async (req, res) => {
   const newTuit = req.body;
-  newTuit._id = new Date().getTime() + "";
   newTuit.likes = 0;
   newTuit.liked = false;
+  newTuit.retuits = 0;
+  newTuit.dislikes = 0;
+  newTuit.replies = 0;
   const insertedTuit = await tuitsDao.createTuit(newTuit);
   res.json(insertedTuit);
 };
 
 const findTuits = async (req, res) => {
   const tuits = await tuitsDao.findTuits();
-  console.log(tuits);
   res.json(tuits);
 };
 const updateTuit = async (req, res) => {
